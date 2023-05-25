@@ -1,61 +1,44 @@
-# Print on/off key press status for the arrow keys.
-
-import pygame
+import pygame, sys
 
 
+# Set up pygame.
 pygame.init()
 
+# Set up the window.
+WINDOWWIDTH = 400
+WINDOWHEIGHT = 400
 
+windowSurface = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT), 0, 32)
+# windowSurface = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT), pygame.HIDDEN)
 
-# pygame.K_UP
-# pygame.K_DOWN
-# pygame.K_LEFT
-# pygame.K_RIGHT
-
-# while True:
-
-# #     print('here')
-#     pressed_keys = pygame.key.get_pressed()
-    
-#     if pressed_keys[pygame.K_UP]:
-#         print('UP')
-
-#     pygame.event.pump()
-#     print('there')
-
-
-
-# is_moving = False
-
-# while True:
-#     for event in pygame.event.get():
-#         if event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
-#             # is_moving = True
-#             print('DOWN')
-#         elif event.type == pygame.KEYUP and event.key == pygame.K_m:
-#             print('m')
-#         pygame.event.pump()
-
-# done = False
-# clock = pygame.time.Clock()
-
-# while not done:
-#     clock.tick(60)
-
-#     keyState = pygame.key.get_pressed()
-
-#     if keyState[pygame.K_UP]:
-#         print('\nGame Shuting Down!')
-#         done = True
-
-#     pygame.event.pump()
-
+# Run the game loop.
 while True:
-    # print('Looking...')
+
+# Check for events.
     for event in pygame.event.get():
+
         if event.type == pygame.QUIT:
-            pass
- 
-    pressed = pygame.key.get_pressed()
-    if pressed[pygame.K_w]:
-        print("w is pressed")
+            pygame.quit()
+            sys.exit()
+
+        if event.type == pygame.KEYDOWN:
+            # Change the keyboard variables.
+            if event.key == pygame.K_LEFT:
+                print('Press: Left')
+            if event.key == pygame.K_RIGHT:
+                print('Press: Right')
+            if event.key == pygame.K_UP:
+                print('Press: UP')
+            if event.key == pygame.K_DOWN:
+                print('Press: DOWN')
+
+        if event.type == pygame.KEYUP:
+            # Change the keyboard variables.
+            if event.key == pygame.K_LEFT:
+                print('Un-press: Left')
+            if event.key == pygame.K_RIGHT:
+                print('Un-press: Right')
+            if event.key == pygame.K_UP:
+                print('Un-press: UP')
+            if event.key == pygame.K_DOWN:
+                print('Un-press: DOWN')
