@@ -21,14 +21,12 @@ current_status = {
     'L': False,
     'R': False}
 
-def status_to_motor(current_status: dict):
+def status_to_motor(orig_status: dict):
 
     # If only left/right is pressed, the pivot.
     # If F/B + L/R then F/B @ 50% + L/R @ 25%
 
-    num_status = current_status
-    for key, val in num_status.items():  # Translate True/False to 1/0
-        num_status[key] = 1 if val else 0
+    current_status = orig_status
 
     if current_status['F'] and current_status['B']:
         current_status['F'], current_status['B'] = False, False
