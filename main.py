@@ -47,24 +47,24 @@ def status_to_motor(current_status: dict):
     if current_status['F']:
         if current_status['R']:
             kit.motor1.throttle = 1.0
-            kit.motor2.throttle = .8
+            kit.motor2.throttle = .9
         elif current_status['L']:
-            kit.motor1.throttle = .8
+            kit.motor1.throttle = .9
             kit.motor2.throttle = 1.0
         else:  # Just forward.
-            kit.motor1.throttle = .8
-            kit.motor2.throttle = .8
+            kit.motor1.throttle = .9
+            kit.motor2.throttle = .9
 
     elif current_status['B']:
         if current_status['R']:
             kit.motor1.throttle = -1.0
-            kit.motor2.throttle = -.8
+            kit.motor2.throttle = -.9
         elif current_status['L']:
-            kit.motor1.throttle = -.8
+            kit.motor1.throttle = -.9
             kit.motor2.throttle = -1.0
         else:  # Just forward.
-            kit.motor1.throttle = -.8
-            kit.motor2.throttle = -.8
+            kit.motor1.throttle = -.9
+            kit.motor2.throttle = -.9
     
     elif current_status['L']:
         kit.motor1.throttle = -1
