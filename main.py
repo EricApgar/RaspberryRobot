@@ -1,4 +1,5 @@
 import pygame, sys
+import pygame.camera
 from adafruit_motorkit import MotorKit
 
 
@@ -7,13 +8,20 @@ kit = MotorKit()
 
 # Set up pygame.
 pygame.init()
+pygame.camera.init()
+
+# Setup the camera.
+screen = pygame.display.set_mode((640, 480), 0)
+cam_list = pygame.camera.list_cameras()
+cam = pygame.camera.Camera(cam_list[0], (32, 24))
+cam.start()
 
 # Set up the window.
 WINDOWWIDTH = 400
 WINDOWHEIGHT = 400
 
-windowSurface = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT), 0, 32)
-# windowSurface = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT), pygame.HIDDEN)
+# window_surface = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT), 0, 32)
+# window_surface = pygame.display.set_mode((WINDOWWIDTH, WINDOWHEIGHT), pygame.HIDDEN)
 
 current_status = {
     'F': False,
@@ -81,7 +89,12 @@ def status_to_motor(orig_status: dict):
 # Run the game loop.
 while True:
 
-# Check for events.
+    image1 = cam.get_image()
+    image1 = pygame.transform.scale(image1, (640, 480))
+    screen.blit(image1, (0, 0))
+    pygame.display.update()
+
+    # Check for events.
     for event in pygame.event.get():
 
         if event.type == pygame.QUIT:
