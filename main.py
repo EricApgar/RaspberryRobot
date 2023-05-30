@@ -90,7 +90,7 @@ def status_to_motor(orig_status: dict):
 while True:
 
     image1 = cam.get_image()
-    # image1 = pygame.transform.scale(image1, (640, 480))
+    image1 = pygame.transform.scale(image1, (640, 480))
     screen.blit(image1, (0, 0))
     pygame.display.update()
 
